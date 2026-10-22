@@ -1,0 +1,17 @@
+{
+  "models": [
+    "gemma9b-awq",
+    "llama1b",
+    "llama8b-awq",
+    "qwen0.5b",
+    "qwen1.5b",
+    "qwen0.5b-awq",
+    "qwen1.5b-awq",
+    "qwen3b-awq",
+    "qwen7b-awq",
+    "qwen14b-awq"
+  ],
+  "cls_spread_median": 0.05800000000000005,
+  "cls_spread_mean": 0.08796666666666667,
+  "frac_spread_in_3_8": 0.225
+}

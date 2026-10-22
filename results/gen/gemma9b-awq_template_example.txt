@@ -1,0 +1,8 @@
+<bos><start_of_turn>user
+Classify the sentiment of the following movie review as positive or negative.
+
+Review: it confirms fincher 's status as a film maker who artfully bends technical know-how to the service of psychological insight .
+
+Answer with one word, either positive or negative.
+Sentiment:<end_of_turn>
+<start_of_turn>model

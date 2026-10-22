@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We studied how atomic, meaning-preserving surface edits to chat-formatted prompts change the outputs of ten open-weight LLMs from 0.5B to 14.7B parameters. Surface formatting changes model behavior well beyond the noise floor, but not in the uniform way common beliefs suggest. The effect is very large below about 1.5B parameters (7--28 point spreads) and levels off at a small but nonzero level (about 4 points) from 7B to 14B. ALL-CAPS is the dominant harmful edit for small models and still costs 3--4 points of instruction compliance at 7--14B. Trailing whitespace does not lengthen outputs, and JSON-structured prompts do not give a uniform extraction gain. Their effects depend strongly on the task and on whether JSON is used for the input or the output. Which edits help or hurt is largely model-specific, and even quantization reshuffles it.
+
+{\bf Key takeaway:} formatting is part of the experiment. Report results over several formats for small models, avoid non-canonical casing at any size, and validate structured formats per task.
+
+Future work should (i) complete \ifeval for \gemma-9B and add models of 30B or more to test whether the casing penalty disappears, (ii) repeat the length experiment in raw completion mode, where trailing whitespace changes tokenization at the start of generation, (iii) randomize the base template to separate edit effects from the choice of anchor, (iv) test API models and whether providers normalize whitespace, and (v) use batch-invariant inference kernels~\cite{he2025defeating} to remove the noise floor on long generations.

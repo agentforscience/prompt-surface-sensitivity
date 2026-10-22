@@ -1,0 +1,83 @@
+\section{Experimental Setup}
+\label{sec:method}
+
+Our main question is whether a meaning-preserving edit to a prompt's surface form changes a model's output, and whether this sensitivity shrinks with model size. We hold the semantic content of every prompt fixed, apply one edit at a time, and compare each edited prompt with the clean \edit{base} prompt on the same item.
+
+\para{Hypotheses.} We test five specific claims, fixed before running experiments:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item {\bf H1}: meaning-preserving formatting changes produce a 3--8 point accuracy spread on classification.
+    \item {\bf H2}: trailing whitespace in the user message increases output length by 15--25\%.
+    \item {\bf H3}: ALL-CAPS instructions reduce compliance by 5--12 points in small models, with a negligible effect ($<$2 points) at $\geq$7B.
+    \item {\bf H4}: JSON-structured prompts improve extraction accuracy by 10--15 points at all sizes.
+    \item {\bf H5}: format sensitivity decreases log-linearly with parameter count.
+\end{itemize}
+
+\subsection{Models and Decoding}
+
+\Tabref{tab:models} lists the ten models. The 4-bit AWQ~\cite{lin2024awq} \qwen ladder from 0.5B to 14B~\cite{qwen2024qwen25} is the cleanest scale comparison, because it holds the model family and quantization fixed. The 16-bit (bf16) 0.5B and 1.5B runs serve as a quantization control, and \llama~\cite{grattafiori2024llama} and \gemma~\cite{gemma2024gemma2} add two more families. All models run locally with \vllm 0.32.0~\cite{kwon2023efficient} on shared NVIDIA RTX A6000 GPUs. We use greedy decoding (temperature 0, seed 42), each model's default chat template and default system prompt, and a single user turn. The generation limit is 10 tokens for classification, 1024 for \ifeval, 64 for \squad, and 256 for \conll. Each model receives 24{,}046 prompts. \gemma-9B did not finish its \ifeval generations, so experiments on length and compliance cover nine models.
+
+\begin{table}[t]
+    \centering
+    \small
+    \caption{Models evaluated. All are instruction-tuned. AWQ = 4-bit activation-aware weight quantization. \gemma-9B has no \ifeval results.}
+    \label{tab:models}
+    \begin{tabular}{@{}llrl@{}}
+        \toprule
+        \textbf{Short name} & \textbf{Checkpoint} & \textbf{Params} & \textbf{Weights} \\
+        \midrule
+        qwen0.5b & Qwen2.5-0.5B-Instruct & 0.49B & bf16 \\
+        qwen0.5b-awq & Qwen2.5-0.5B-Instruct-AWQ & 0.49B & AWQ int4 \\
+        llama1b & Llama-3.2-1B-Instruct & 1.24B & bf16 \\
+        qwen1.5b & Qwen2.5-1.5B-Instruct & 1.54B & bf16 \\
+        qwen1.5b-awq & Qwen2.5-1.5B-Instruct-AWQ & 1.54B & AWQ int4 \\
+        qwen3b-awq & Qwen2.5-3B-Instruct-AWQ & 3.09B & AWQ int4 \\
+        qwen7b-awq & Qwen2.5-7B-Instruct-AWQ & 7.62B & AWQ int4 \\
+        llama8b-awq & Meta-Llama-3.1-8B-Instruct-AWQ-INT4 & 8.03B & AWQ int4 \\
+        gemma9b-awq & gemma-2-9b-it-AWQ-INT4 & 9.24B & AWQ int4 \\
+        qwen14b-awq & Qwen2.5-14B-Instruct-AWQ & 14.7B & AWQ int4 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Tasks and Surface Edits}
+
+\para{Exp.~1: classification (H1, H5).} We use \sst validation~\cite{socher2013recursive} ($n{=}500$), \agnews test~\cite{zhang2015character} (500), \emotion test~\cite{saravia2018carer} (500), and \boolq validation~\cite{clark2019boolq} (300, passages of at most 200 words). The template has an instruction, the input in a labelled field (\eg ``\texttt{Article: \{input\}}''), a line stating the answer format, and an answer cue (\eg ``\texttt{Topic:}''). \Tabref{tab:edits} lists the nine edits. Each edit modifies the \emph{template text only}; the dataset input is inserted verbatim. We take the first label word of the response as the prediction (prefix match, so ``sport'' maps to \emph{sports}) and count unparseable outputs as wrong. Parse rates are 87--100\%.
+
+\begin{table}[t]
+    \centering
+    \small
+    \caption{Surface edits applied to the classification template. Every edit preserves the meaning of the prompt and leaves the inserted data unchanged.}
+    \label{tab:edits}
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        \textbf{Variant} & \textbf{Edit} \\
+        \midrule
+        \edit{base} & clean template \\
+        \edit{trailing\_space} / \edit{trailing\_newline} & append \texttt{" "} / \texttt{"\textbackslash n"} to the user message \\
+        \edit{double\_space} & double every space in the template \\
+        \edit{single\_line} & replace newlines in the template with spaces \\
+        \lowedit / \capsedit & lower-case / UPPER-case the template \\
+        \edit{no\_punct} & remove \texttt{.,:;?!} from the template \\
+        \edit{exclaim} & replace \texttt{.} with \texttt{!} \\
+        \edit{sep\_dash} & replace field separator \texttt{:} with \texttt{~-} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\para{Exp.~2 and 3: length and compliance (H2, H3).} We use all 541 \ifeval prompts~\cite{zhou2023instruction} under six conditions: \edit{base}, \edit{trailing\_space}, \edit{trailing\_newline}, \edit{trailing\_2newline}, \capsedit, and \lowedit. We measure response length in generated tokens. We measure compliance with the official \ifeval checkers (taken from the lm-evaluation-harness~\cite{biderman2024lessons}), always evaluated against the \emph{original} prompt's instruction arguments. Our main metric is prompt-level strict accuracy. Because upper-casing can change the meaning of instructions about letter case, we also report the effect after excluding prompts with \texttt{change\_case} instructions.
+
+\para{Exp.~4: extraction (H4).} We use \squad v1.1 validation~\cite{rajpurkar2016squad} ($n{=}400$; EM and F1 with the official normalization) and \conll-2003 test~\cite{tjong2003introduction} (300 sentences with at least one entity; micro-F1 over (type, text) pairs). We use a $2\times2$ design. The \emph{input format} is either labelled plain text or a JSON object with the same fields as keys (\texttt{task}, \texttt{passage} and \texttt{question} for \squad or \texttt{sentence} for \conll, and \texttt{output\_format}); see \appref{app:prompts}. The \emph{output format} asks for either a plain answer or a JSON answer. The semantic content is identical across the four cells. One lenient parser scores all cells: it accepts fenced JSON, string-valued and duplicate-key JSON, entity lists, and plain \texttt{TYPE: text} lines. Differences therefore reflect the model's answers rather than the parser.
+
+\subsection{Metrics and Statistics}
+
+All comparisons are paired at the item level.
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item {\bf Variant vs.\ base.} We use an exact McNemar test on correct/incorrect pairs, with Holm correction over the nine variants within each model$\times$task, and paired bootstrap 95\% confidence intervals (2{,}000 resamples).
+    \item {\bf Spread.} We define spread as the maximum minus the minimum accuracy across the ten variants. With $n{=}300$--$500$, the max--min of ten noisy estimates is positive even when there is no effect. We therefore compare it to a permutation null that shuffles each item's outcomes across variants (1{,}000 permutations).
+    \item {\bf Flip rate.} The fraction of items whose predicted label differs from the \edit{base} prediction, averaged over variants.
+    \item {\bf Length.} We use the Wilcoxon signed-rank test on per-item lengths and a bootstrap CI on the ratio of mean lengths.
+    \item {\bf Extraction.} We use a paired bootstrap on per-item F1 differences.
+    \item {\bf Scale.} We fit OLS of per-model sensitivity on $\log_{10}(\text{params})$ and also report Spearman's $\rho$.
+\end{itemize}
+
+\para{Noise floor.} We measure the inference stack's own variability in two ways. First, we rerun all 24{,}046 prompts for qwen1.5b-awq. Second, the \llama and \gemma chat templates strip trailing whitespace from the user message (a Jinja \texttt{|~trim} filter), so for these models the trailing-whitespace variants are byte-identical to \edit{base} after templating. Any difference between them is pure inference noise. These \emph{placebo} conditions come for free in our design.

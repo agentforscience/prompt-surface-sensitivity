@@ -1,0 +1,650 @@
+IFEval incomplete (excluded from Exp 2/3): ['gemma9b-awq']
+models: ['gemma9b-awq', 'llama1b', 'llama8b-awq', 'qwen0.5b', 'qwen1.5b', 'qwen0.5b-awq', 'qwen1.5b-awq', 'qwen3b-awq', 'qwen7b-awq', 'qwen14b-awq']
+
+=== Exp1 spread ===
+            model     task  base_acc  spread  spread_lo  spread_hi  null_spread_mean  null_spread_95  perm_p    std  cochran_q  cochran_p  parse_rate             worst              best    n
+0    gemma9b-awq   agnews     0.856   0.142      0.104      0.182             0.024           0.034   0.001  0.043    279.774      0.000       0.989          no_punct       single_line  500
+1    gemma9b-awq    boolq     0.910   0.017      0.010      0.037             0.013           0.020   0.308  0.006     16.132      0.064       1.000              base          no_punct  300
+2    gemma9b-awq  emotion     0.524   0.028      0.018      0.056             0.020           0.028   0.103  0.008     14.669      0.100       0.916      double_space          no_punct  500
+3    gemma9b-awq     sst2     0.948   0.010      0.004      0.022             0.007           0.010   0.201  0.003     18.203      0.033       0.998              base         uppercase  500
+4        llama1b   agnews     0.456   0.200      0.158      0.240             0.031           0.044   0.001  0.054    252.832      0.000       0.992      double_space         uppercase  500
+5        llama1b    boolq     0.487   0.257      0.200      0.330             0.054           0.077   0.001  0.082    195.791      0.000       1.000       single_line         lowercase  300
+6        llama1b  emotion     0.236   0.072      0.050      0.110             0.036           0.052   0.001  0.020     26.773      0.002       0.669         lowercase          sep_dash  500
+7        llama1b     sst2     0.902   0.148      0.114      0.188             0.027           0.040   0.001  0.043    213.014      0.000       1.000      double_space         lowercase  500
+8    llama8b-awq   agnews     0.724   0.106      0.062      0.158             0.031           0.044   0.001  0.031     84.469      0.000       0.997          no_punct         uppercase  500
+9    llama8b-awq    boolq     0.843   0.027      0.017      0.053             0.023           0.033   0.368  0.008      9.866      0.361       1.000         lowercase          no_punct  300
+10   llama8b-awq  emotion     0.472   0.042      0.026      0.074             0.025           0.038   0.014  0.012     18.598      0.029       0.878       single_line          no_punct  500
+11   llama8b-awq     sst2     0.942   0.010      0.008      0.026             0.013           0.018   0.874  0.003      4.695      0.860       0.988      double_space          sep_dash  500
+12      qwen0.5b   agnews     0.676   0.240      0.194      0.286             0.040           0.058   0.001  0.062    210.937      0.000       0.979         uppercase           exclaim  500
+13      qwen0.5b    boolq     0.657   0.067      0.043      0.130             0.043           0.063   0.036  0.021     19.777      0.019       1.000      double_space              base  300
+14      qwen0.5b  emotion     0.292   0.144      0.102      0.192             0.041           0.058   0.001  0.041     85.500      0.000       0.966         uppercase           exclaim  500
+15      qwen0.5b     sst2     0.898   0.110      0.080      0.142             0.022           0.032   0.001  0.032    165.641      0.000       0.991         uppercase         lowercase  500
+16  qwen0.5b-awq   agnews     0.668   0.224      0.186      0.266             0.044           0.064   0.001  0.083    302.019      0.000       0.983         uppercase    trailing_space  500
+17  qwen0.5b-awq    boolq     0.670   0.083      0.050      0.147             0.053           0.077   0.019  0.028     23.961      0.004       1.000         uppercase              base  300
+18  qwen0.5b-awq  emotion     0.270   0.264      0.214      0.314             0.044           0.064   0.001  0.067    192.040      0.000       0.919         uppercase         lowercase  500
+19  qwen0.5b-awq     sst2     0.900   0.280      0.240      0.330             0.036           0.052   0.001  0.085    475.024      0.000       0.997         uppercase           exclaim  500
+20      qwen1.5b   agnews     0.724   0.204      0.160      0.250             0.032           0.048   0.001  0.050    203.795      0.000       0.891         uppercase          no_punct  500
+21      qwen1.5b    boolq     0.767   0.023      0.017      0.060             0.028           0.040   0.823  0.007      5.141      0.822       1.000       single_line      double_space  300
+22      qwen1.5b  emotion     0.486   0.024      0.018      0.064             0.029           0.042   0.772  0.008      6.188      0.721       0.916         uppercase      double_space  500
+23      qwen1.5b     sst2     0.946   0.022      0.014      0.040             0.013           0.018   0.015  0.008     27.771      0.001       1.000         uppercase       single_line  500
+24  qwen1.5b-awq   agnews     0.610   0.112      0.086      0.152             0.028           0.042   0.001  0.033    112.669      0.000       0.883         uppercase           exclaim  500
+25  qwen1.5b-awq    boolq     0.747   0.033      0.020      0.067             0.030           0.043   0.381  0.009      7.539      0.581       1.000       single_line      double_space  300
+26  qwen1.5b-awq  emotion     0.526   0.060      0.042      0.096             0.031           0.044   0.001  0.017     28.239      0.001       0.963          no_punct       single_line  500
+27  qwen1.5b-awq     sst2     0.936   0.012      0.008      0.028             0.013           0.018   0.664  0.004      7.088      0.628       0.998          no_punct       single_line  500
+28   qwen14b-awq   agnews     0.840   0.038      0.024      0.062             0.020           0.030   0.007  0.011     25.367      0.003       0.998         uppercase       single_line  500
+29   qwen14b-awq    boolq     0.800   0.037      0.027      0.073             0.024           0.033   0.037  0.016     37.958      0.000       1.000  trailing_newline       single_line  300
+30   qwen14b-awq  emotion     0.500   0.056      0.034      0.086             0.025           0.036   0.001  0.016     35.930      0.000       0.981       single_line         uppercase  500
+31   qwen14b-awq     sst2     0.928   0.026      0.014      0.042             0.012           0.016   0.001  0.007     30.685      0.000       0.999      double_space       single_line  500
+32    qwen3b-awq   agnews     0.728   0.106      0.074      0.136             0.024           0.036   0.001  0.026     94.610      0.000       0.867         uppercase      double_space  500
+33    qwen3b-awq    boolq     0.750   0.013      0.013      0.050             0.023           0.033   0.988  0.005      3.518      0.940       1.000          no_punct         lowercase  300
+34    qwen3b-awq  emotion     0.532   0.088      0.056      0.128             0.029           0.042   0.001  0.026     70.813      0.000       0.924         uppercase    trailing_space  500
+35    qwen3b-awq     sst2     0.928   0.038      0.022      0.060             0.015           0.022   0.001  0.010     35.821      0.000       1.000         uppercase       single_line  500
+36    qwen7b-awq   agnews     0.792   0.098      0.068      0.134             0.023           0.032   0.001  0.024     97.945      0.000       0.991         uppercase          no_punct  500
+37    qwen7b-awq    boolq     0.853   0.020      0.017      0.043             0.017           0.023   0.384  0.008     16.888      0.051       1.000  trailing_newline         uppercase  300
+38    qwen7b-awq  emotion     0.530   0.020      0.014      0.048             0.021           0.030   0.583  0.006      6.552      0.684       0.891          no_punct  trailing_newline  500
+39    qwen7b-awq     sst2     0.916   0.018      0.012      0.032             0.012           0.018   0.065  0.007     25.240      0.003       0.997              base       single_line  500
+
+=== Exp1 mean delta by variant (pp, over tasks) ===
+ model             gemma9b-awq  llama1b  llama8b-awq  qwen0.5b  qwen0.5b-awq  qwen1.5b  qwen1.5b-awq  qwen14b-awq  qwen3b-awq  qwen7b-awq
+variant                                                                                                                                 
+double_space             -0.6     -5.3          1.1      -4.0          -5.8       0.5           0.5         -0.7         1.1        -0.1
+exclaim                   0.0     -0.1         -0.3       3.2           0.6      -0.2           0.1          0.5        -0.7         0.5
+lowercase                 0.4      2.2         -0.3       0.7           1.0      -0.1          -0.1          1.2         0.1         0.3
+no_punct                 -2.7      2.1         -1.0      -2.5          -5.8       1.9          -1.3          1.0        -0.5         0.8
+sep_dash                 -0.3      1.8         -0.1      -1.6          -2.4      -0.5          -0.3         -0.3        -0.2         0.6
+single_line               0.4     -3.7          0.1      -0.1          -5.1      -1.1          -0.7          0.8        -0.0         0.4
+trailing_newline          0.0      0.0          0.1      -0.8          -3.7      -0.2          -0.5          0.2         0.1         0.4
+trailing_space            0.0      0.0          0.1      -1.6          -0.6      -0.4           0.2         -0.2         0.1        -0.1
+uppercase                -0.2      7.2          0.5      -8.8         -17.8      -3.6          -2.4          1.2        -4.3        -0.7
+
+=== Exp1 significant (Holm<.05) ===
+             model     task           variant  delta  p_holm
+6     gemma9b-awq   agnews          no_punct -0.136   0.000
+38        llama1b   agnews      double_space -0.110   0.000
+39        llama1b   agnews       single_line -0.056   0.000
+40        llama1b   agnews         lowercase -0.068   0.000
+41        llama1b   agnews         uppercase  0.090   0.000
+42        llama1b   agnews          no_punct -0.044   0.016
+48        llama1b    boolq       single_line -0.090   0.000
+49        llama1b    boolq         lowercase  0.167   0.000
+50        llama1b    boolq         uppercase  0.163   0.000
+51        llama1b    boolq          no_punct  0.123   0.000
+62        llama1b  emotion          sep_dash  0.042   0.000
+65        llama1b     sst2      double_space -0.130   0.000
+78    llama8b-awq   agnews          no_punct -0.082   0.012
+108      qwen0.5b   agnews    trailing_space -0.040   0.002
+109      qwen0.5b   agnews  trailing_newline -0.038   0.011
+113      qwen0.5b   agnews         uppercase -0.170   0.000
+115      qwen0.5b   agnews           exclaim  0.070   0.000
+131      qwen0.5b  emotion         uppercase -0.096   0.000
+132      qwen0.5b  emotion          no_punct -0.066   0.004
+133      qwen0.5b  emotion           exclaim  0.048   0.019
+139      qwen0.5b     sst2         lowercase  0.024   0.033
+140      qwen0.5b     sst2         uppercase -0.086   0.000
+145  qwen0.5b-awq   agnews  trailing_newline -0.078   0.000
+146  qwen0.5b-awq   agnews      double_space -0.184   0.000
+147  qwen0.5b-awq   agnews       single_line -0.098   0.000
+149  qwen0.5b-awq   agnews         uppercase -0.210   0.000
+150  qwen0.5b-awq   agnews          no_punct -0.134   0.000
+163  qwen0.5b-awq  emotion  trailing_newline -0.064   0.000
+166  qwen0.5b-awq  emotion         lowercase  0.116   0.000
+167  qwen0.5b-awq  emotion         uppercase -0.148   0.000
+170  qwen0.5b-awq  emotion          sep_dash -0.062   0.000
+176  qwen0.5b-awq     sst2         uppercase -0.272   0.000
+183      qwen1.5b   agnews       single_line -0.038   0.009
+185      qwen1.5b   agnews         uppercase -0.104   0.000
+186      qwen1.5b   agnews          no_punct  0.100   0.000
+219  qwen1.5b-awq   agnews       single_line -0.032   0.030
+221  qwen1.5b-awq   agnews         uppercase -0.104   0.000
+240  qwen1.5b-awq  emotion          no_punct -0.054   0.007
+257   qwen14b-awq   agnews         uppercase -0.030   0.037
+275   qwen14b-awq  emotion         uppercase  0.038   0.023
+290    qwen3b-awq   agnews      double_space  0.048   0.003
+293    qwen3b-awq   agnews         uppercase -0.058   0.003
+311    qwen3b-awq  emotion         uppercase -0.086   0.000
+320    qwen3b-awq     sst2         uppercase -0.028   0.023
+325    qwen7b-awq   agnews  trailing_newline  0.022   0.024
+329    qwen7b-awq   agnews         uppercase -0.054   0.000
+330    qwen7b-awq   agnews          no_punct  0.044   0.013
+354    qwen7b-awq     sst2       single_line  0.018   0.035
+
+=== Exp2 length ===
+            model            variant  mean_base  mean_var  ratio  ci_lo  ci_hi  median_log_ratio  wilcoxon_p  identical  trunc_base  trunc_var
+0        llama1b     trailing_space    384.749   381.227  0.991  0.955  1.027             0.000       0.351      0.307       0.107      0.115
+1        llama1b   trailing_newline    384.749   381.579  0.992  0.960  1.026             0.000       0.474      0.231       0.107      0.107
+2        llama1b  trailing_2newline    384.749   377.889  0.982  0.951  1.016             0.000       0.115      0.244       0.107      0.102
+3        llama1b          uppercase    384.749   403.434  1.049  0.995  1.106             0.031       0.002      0.004       0.107      0.111
+4        llama1b          lowercase    384.749   395.412  1.028  0.980  1.075             0.004       0.004      0.046       0.107      0.104
+5    llama8b-awq     trailing_space    357.148   358.586  1.004  0.997  1.012             0.000       0.962      0.749       0.052      0.052
+6    llama8b-awq   trailing_newline    357.148   358.453  1.004  0.995  1.013             0.000       0.469      0.752       0.052      0.054
+7    llama8b-awq  trailing_2newline    357.148   355.116  0.994  0.985  1.002             0.000       0.146      0.762       0.052      0.050
+8    llama8b-awq          uppercase    357.148   368.810  1.033  0.999  1.067             0.025       0.016      0.011       0.052      0.054
+9    llama8b-awq          lowercase    357.148   371.159  1.039  1.005  1.077             0.007       0.000      0.063       0.052      0.057
+10      qwen0.5b     trailing_space    434.140   413.362  0.952  0.902  1.004             0.000       0.277      0.238       0.270      0.250
+11      qwen0.5b   trailing_newline    434.140   406.200  0.936  0.875  0.996             0.000       0.062      0.155       0.270      0.238
+12      qwen0.5b  trailing_2newline    434.140   411.283  0.947  0.889  1.009             0.000       0.058      0.153       0.270      0.246
+13      qwen0.5b          uppercase    434.140   445.089  1.025  0.946  1.114             0.000       0.344      0.007       0.270      0.283
+14      qwen0.5b          lowercase    434.140   430.414  0.991  0.925  1.062             0.000       0.971      0.072       0.270      0.268
+15  qwen0.5b-awq     trailing_space    503.462   501.083  0.995  0.948  1.042             0.000       0.719      0.416       0.409      0.416
+16  qwen0.5b-awq   trailing_newline    503.462   480.530  0.954  0.896  1.018             0.000       0.793      0.172       0.409      0.384
+17  qwen0.5b-awq  trailing_2newline    503.462   497.490  0.988  0.934  1.047             0.000       0.841      0.174       0.409      0.409
+18  qwen0.5b-awq          uppercase    503.462   504.869  1.003  0.927  1.083             0.000       0.651      0.004       0.409      0.420
+19  qwen0.5b-awq          lowercase    503.462   496.370  0.986  0.915  1.059             0.000       0.108      0.085       0.409      0.405
+20      qwen1.5b     trailing_space    310.065   315.196  1.017  0.960  1.076             0.000       0.367      0.229       0.115      0.122
+21      qwen1.5b   trailing_newline    310.065   303.233  0.978  0.923  1.037             0.000       0.933      0.166       0.115      0.102
+22      qwen1.5b  trailing_2newline    310.065   332.102  1.071  1.010  1.137             0.000       0.132      0.142       0.115      0.129
+23      qwen1.5b          uppercase    310.065   342.205  1.104  1.021  1.194             0.087       0.000      0.017       0.115      0.140
+24      qwen1.5b          lowercase    310.065   311.994  1.006  0.942  1.076             0.000       0.602      0.072       0.115      0.115
+25  qwen1.5b-awq     trailing_space    352.577   337.126  0.956  0.912  1.000             0.000       0.213      0.373       0.172      0.157
+26  qwen1.5b-awq   trailing_newline    352.577   343.211  0.973  0.915  1.034             0.000       0.705      0.183       0.172      0.165
+27  qwen1.5b-awq  trailing_2newline    352.577   349.902  0.992  0.931  1.058             0.000       0.523      0.157       0.172      0.159
+28  qwen1.5b-awq          uppercase    352.577   355.919  1.009  0.929  1.093             0.003       0.163      0.011       0.172      0.159
+29  qwen1.5b-awq          lowercase    352.577   337.717  0.958  0.892  1.029             0.000       0.324      0.055       0.172      0.150
+30   qwen14b-awq     trailing_space    309.508   302.359  0.977  0.949  1.004             0.000       0.310      0.122       0.048      0.031
+31   qwen14b-awq   trailing_newline    309.508   306.621  0.991  0.958  1.026             0.000       0.729      0.076       0.048      0.046
+32   qwen14b-awq  trailing_2newline    309.508   308.586  0.997  0.963  1.033             0.000       0.415      0.076       0.048      0.046
+33   qwen14b-awq          uppercase    309.508   314.922  1.017  0.985  1.049             0.013       0.026      0.009       0.048      0.046
+34   qwen14b-awq          lowercase    309.508   308.780  0.998  0.963  1.033             0.000       0.754      0.026       0.048      0.046
+35    qwen3b-awq     trailing_space    300.133   294.904  0.983  0.935  1.031             0.000       0.891      0.244       0.094      0.092
+36    qwen3b-awq   trailing_newline    300.133   305.987  1.020  0.955  1.092             0.000       0.218      0.105       0.094      0.096
+37    qwen3b-awq  trailing_2newline    300.133   295.179  0.983  0.919  1.047             0.000       0.314      0.083       0.094      0.083
+38    qwen3b-awq          uppercase    300.133   303.869  1.012  0.954  1.077             0.031       0.034      0.007       0.094      0.091
+39    qwen3b-awq          lowercase    300.133   289.800  0.966  0.905  1.031             0.000       0.185      0.044       0.094      0.078
+40    qwen7b-awq     trailing_space    288.545   287.379  0.996  0.970  1.024             0.000       0.652      0.242       0.054      0.048
+41    qwen7b-awq   trailing_newline    288.545   289.996  1.005  0.962  1.048             0.000       0.970      0.122       0.054      0.052
+42    qwen7b-awq  trailing_2newline    288.545   293.680  1.018  0.978  1.062             0.000       0.653      0.129       0.054      0.061
+43    qwen7b-awq          uppercase    288.545   302.675  1.049  1.001  1.100             0.051       0.002      0.011       0.054      0.052
+44    qwen7b-awq          lowercase    288.545   287.115  0.995  0.950  1.046             0.000       0.598      0.037       0.054      0.043
+
+=== Exp3 compliance ===
+             model            variant             metric   base    var  delta  ci_lo  ci_hi      p    n
+0         llama1b     trailing_space             strict  0.479  0.506  0.028  0.006  0.052  0.028  541
+1         llama1b     trailing_space              loose  0.508  0.542  0.033  0.011  0.055  0.006  541
+2         llama1b     trailing_space     strict_no_case  0.486  0.510  0.024  0.000  0.050  0.080  457
+3         llama1b   trailing_newline             strict  0.479  0.494  0.015 -0.007  0.037  0.243  541
+4         llama1b   trailing_newline              loose  0.508  0.534  0.026  0.004  0.048  0.034  541
+5         llama1b   trailing_newline     strict_no_case  0.486  0.495  0.009 -0.013  0.031  0.572  457
+6         llama1b  trailing_2newline             strict  0.479  0.501  0.022 -0.002  0.046  0.096  541
+7         llama1b  trailing_2newline              loose  0.508  0.540  0.031  0.007  0.055  0.014  541
+8         llama1b  trailing_2newline     strict_no_case  0.486  0.501  0.015 -0.011  0.039  0.311  457
+9         llama1b          uppercase             strict  0.479  0.434 -0.044 -0.081 -0.004  0.032  541
+10        llama1b          uppercase              loose  0.508  0.468 -0.041 -0.079 -0.002  0.049  541
+11        llama1b          uppercase     strict_no_case  0.486  0.427 -0.059 -0.101 -0.017  0.007  457
+12        llama1b          lowercase             strict  0.479  0.471 -0.007 -0.039  0.026  0.738  541
+13        llama1b          lowercase              loose  0.508  0.512  0.004 -0.030  0.039  0.914  541
+14        llama1b          lowercase     strict_no_case  0.486  0.473 -0.013 -0.048  0.022  0.550  457
+15        llama1b               base  inst_strict_level    NaN  0.609    NaN    NaN    NaN    NaN  834
+16        llama1b          uppercase  inst_strict_level    NaN  0.561    NaN    NaN    NaN    NaN  834
+17        llama1b          lowercase  inst_strict_level    NaN  0.608    NaN    NaN    NaN    NaN  834
+18    llama8b-awq     trailing_space             strict  0.741  0.730 -0.011 -0.022  0.000  0.109  541
+19    llama8b-awq     trailing_space              loose  0.773  0.771 -0.002 -0.013  0.009  1.000  541
+20    llama8b-awq     trailing_space     strict_no_case  0.744  0.737 -0.007 -0.018  0.004  0.453  457
+21    llama8b-awq   trailing_newline             strict  0.741  0.736 -0.006 -0.015  0.004  0.453  541
+22    llama8b-awq   trailing_newline              loose  0.773  0.773  0.000 -0.009  0.009  1.000  541
+23    llama8b-awq   trailing_newline     strict_no_case  0.744  0.740 -0.004 -0.015  0.007  0.688  457
+24    llama8b-awq  trailing_2newline             strict  0.741  0.734 -0.007 -0.017  0.000  0.219  541
+25    llama8b-awq  trailing_2newline              loose  0.773  0.771 -0.002 -0.011  0.006  1.000  541
+26    llama8b-awq  trailing_2newline     strict_no_case  0.744  0.740 -0.004 -0.013  0.004  0.625  457
+27    llama8b-awq          uppercase             strict  0.741  0.710 -0.031 -0.067  0.006  0.111  541
+28    llama8b-awq          uppercase              loose  0.773  0.741 -0.031 -0.067  0.004  0.100  541
+29    llama8b-awq          uppercase     strict_no_case  0.744  0.718 -0.026 -0.068  0.013  0.241  457
+30    llama8b-awq          lowercase             strict  0.741  0.719 -0.022 -0.050  0.004  0.148  541
+31    llama8b-awq          lowercase              loose  0.773  0.769 -0.004 -0.031  0.024  0.899  541
+32    llama8b-awq          lowercase     strict_no_case  0.744  0.722 -0.022 -0.053  0.009  0.203  457
+33    llama8b-awq               base  inst_strict_level    NaN  0.817    NaN    NaN    NaN    NaN  834
+34    llama8b-awq          uppercase  inst_strict_level    NaN  0.791    NaN    NaN    NaN    NaN  834
+35    llama8b-awq          lowercase  inst_strict_level    NaN  0.800    NaN    NaN    NaN    NaN  834
+36       qwen0.5b     trailing_space             strict  0.272  0.264 -0.007 -0.030  0.015  0.618  541
+37       qwen0.5b     trailing_space              loose  0.298  0.290 -0.007 -0.030  0.015  0.618  541
+38       qwen0.5b     trailing_space     strict_no_case  0.300  0.289 -0.011 -0.035  0.013  0.487  457
+39       qwen0.5b   trailing_newline             strict  0.272  0.259 -0.013 -0.041  0.015  0.427  541
+40       qwen0.5b   trailing_newline              loose  0.298  0.290 -0.007 -0.035  0.019  0.699  541
+41       qwen0.5b   trailing_newline     strict_no_case  0.300  0.280 -0.020 -0.050  0.009  0.262  457
+42       qwen0.5b  trailing_2newline             strict  0.272  0.264 -0.007 -0.035  0.018  0.683  541
+43       qwen0.5b  trailing_2newline              loose  0.298  0.285 -0.013 -0.041  0.015  0.427  541
+44       qwen0.5b  trailing_2newline     strict_no_case  0.300  0.282 -0.018 -0.046  0.009  0.280  457
+45       qwen0.5b          uppercase             strict  0.272  0.214 -0.057 -0.098 -0.018  0.007  541
+46       qwen0.5b          uppercase              loose  0.298  0.235 -0.063 -0.104 -0.020  0.004  541
+47       qwen0.5b          uppercase     strict_no_case  0.300  0.228 -0.072 -0.116 -0.028  0.002  457
+48       qwen0.5b          lowercase             strict  0.272  0.233 -0.039 -0.072 -0.004  0.031  541
+49       qwen0.5b          lowercase              loose  0.298  0.262 -0.035 -0.070  0.000  0.067  541
+50       qwen0.5b          lowercase     strict_no_case  0.300  0.243 -0.057 -0.094 -0.022  0.004  457
+51       qwen0.5b               base  inst_strict_level    NaN  0.363    NaN    NaN    NaN    NaN  834
+52       qwen0.5b          uppercase  inst_strict_level    NaN  0.338    NaN    NaN    NaN    NaN  834
+53       qwen0.5b          lowercase  inst_strict_level    NaN  0.333    NaN    NaN    NaN    NaN  834
+54   qwen0.5b-awq     trailing_space             strict  0.274  0.266 -0.007 -0.028  0.011  0.585  541
+55   qwen0.5b-awq     trailing_space              loose  0.301  0.290 -0.011 -0.031  0.009  0.392  541
+56   qwen0.5b-awq     trailing_space     strict_no_case  0.302  0.293 -0.009 -0.031  0.015  0.572  457
+57   qwen0.5b-awq   trailing_newline             strict  0.274  0.266 -0.007 -0.035  0.020  0.694  541
+58   qwen0.5b-awq   trailing_newline              loose  0.301  0.292 -0.009 -0.039  0.018  0.620  541
+59   qwen0.5b-awq   trailing_newline     strict_no_case  0.302  0.282 -0.020 -0.050  0.009  0.272  457
+60   qwen0.5b-awq  trailing_2newline             strict  0.274  0.264 -0.009 -0.039  0.018  0.603  541
+61   qwen0.5b-awq  trailing_2newline              loose  0.301  0.274 -0.028 -0.057  0.000  0.091  541
+62   qwen0.5b-awq  trailing_2newline     strict_no_case  0.302  0.284 -0.018 -0.048  0.015  0.350  457
+63   qwen0.5b-awq          uppercase             strict  0.274  0.207 -0.067 -0.107 -0.026  0.002  541
+64   qwen0.5b-awq          uppercase              loose  0.301  0.224 -0.078 -0.118 -0.035  0.000  541
+65   qwen0.5b-awq          uppercase     strict_no_case  0.302  0.219 -0.083 -0.127 -0.039  0.000  457
+66   qwen0.5b-awq          lowercase             strict  0.274  0.231 -0.043 -0.076 -0.007  0.023  541
+67   qwen0.5b-awq          lowercase              loose  0.301  0.255 -0.046 -0.085 -0.009  0.021  541
+68   qwen0.5b-awq          lowercase     strict_no_case  0.302  0.243 -0.059 -0.098 -0.020  0.005  457
+69   qwen0.5b-awq               base  inst_strict_level    NaN  0.360    NaN    NaN    NaN    NaN  834
+70   qwen0.5b-awq          uppercase  inst_strict_level    NaN  0.326    NaN    NaN    NaN    NaN  834
+71   qwen0.5b-awq          lowercase  inst_strict_level    NaN  0.339    NaN    NaN    NaN    NaN  834
+72       qwen1.5b     trailing_space             strict  0.414  0.403 -0.011 -0.033  0.011  0.405  541
+73       qwen1.5b     trailing_space              loose  0.445  0.438 -0.007 -0.030  0.015  0.636  541
+74       qwen1.5b     trailing_space     strict_no_case  0.420  0.398 -0.022 -0.046  0.002  0.110  457
+75       qwen1.5b   trailing_newline             strict  0.414  0.414  0.000 -0.024  0.026  1.000  541
+76       qwen1.5b   trailing_newline              loose  0.445  0.447  0.002 -0.028  0.028  1.000  541
+77       qwen1.5b   trailing_newline     strict_no_case  0.420  0.418 -0.002 -0.031  0.028  1.000  457
+78       qwen1.5b  trailing_2newline             strict  0.414  0.414  0.000 -0.028  0.028  1.000  541
+79       qwen1.5b  trailing_2newline              loose  0.445  0.444 -0.002 -0.030  0.028  1.000  541
+80       qwen1.5b  trailing_2newline     strict_no_case  0.420  0.416 -0.004 -0.035  0.026  0.890  457
+81       qwen1.5b          uppercase             strict  0.414  0.375 -0.039 -0.079 -0.002  0.064  541
+82       qwen1.5b          uppercase              loose  0.445  0.418 -0.028 -0.070  0.013  0.221  541
+83       qwen1.5b          uppercase     strict_no_case  0.420  0.361 -0.059 -0.098 -0.018  0.008  457
+84       qwen1.5b          lowercase             strict  0.414  0.381 -0.033 -0.067  0.002  0.063  541
+85       qwen1.5b          lowercase              loose  0.445  0.418 -0.028 -0.063  0.007  0.146  541
+86       qwen1.5b          lowercase     strict_no_case  0.420  0.379 -0.042 -0.079 -0.002  0.034  457
+87       qwen1.5b               base  inst_strict_level    NaN  0.520    NaN    NaN    NaN    NaN  834
+88       qwen1.5b          uppercase  inst_strict_level    NaN  0.484    NaN    NaN    NaN    NaN  834
+89       qwen1.5b          lowercase  inst_strict_level    NaN  0.495    NaN    NaN    NaN    NaN  834
+90   qwen1.5b-awq     trailing_space             strict  0.375  0.353 -0.022 -0.044  0.000  0.058  541
+91   qwen1.5b-awq     trailing_space              loose  0.405  0.384 -0.020 -0.041  0.002  0.090  541
+92   qwen1.5b-awq     trailing_space     strict_no_case  0.383  0.368 -0.015 -0.037  0.009  0.265  457
+93   qwen1.5b-awq   trailing_newline             strict  0.375  0.348 -0.028 -0.052 -0.002  0.044  541
+94   qwen1.5b-awq   trailing_newline              loose  0.405  0.388 -0.017 -0.043  0.007  0.253  541
+95   qwen1.5b-awq   trailing_newline     strict_no_case  0.383  0.346 -0.037 -0.066 -0.011  0.014  457
+96   qwen1.5b-awq  trailing_2newline             strict  0.375  0.346 -0.030 -0.055 -0.004  0.036  541
+97   qwen1.5b-awq  trailing_2newline              loose  0.405  0.373 -0.031 -0.061 -0.004  0.036  541
+98   qwen1.5b-awq  trailing_2newline     strict_no_case  0.383  0.354 -0.028 -0.057  0.000  0.066  457
+99   qwen1.5b-awq          uppercase             strict  0.375  0.338 -0.037 -0.074  0.002  0.072  541
+100  qwen1.5b-awq          uppercase              loose  0.405  0.383 -0.022 -0.063  0.017  0.327  541
+101  qwen1.5b-awq          uppercase     strict_no_case  0.383  0.339 -0.044 -0.085 -0.002  0.057  457
+102  qwen1.5b-awq          lowercase             strict  0.375  0.342 -0.033 -0.070  0.002  0.101  541
+103  qwen1.5b-awq          lowercase              loose  0.405  0.381 -0.024 -0.061  0.015  0.259  541
+104  qwen1.5b-awq          lowercase     strict_no_case  0.383  0.335 -0.048 -0.088 -0.004  0.032  457
+105  qwen1.5b-awq               base  inst_strict_level    NaN  0.474    NaN    NaN    NaN    NaN  834
+106  qwen1.5b-awq          uppercase  inst_strict_level    NaN  0.451    NaN    NaN    NaN    NaN  834
+107  qwen1.5b-awq          lowercase  inst_strict_level    NaN  0.441    NaN    NaN    NaN    NaN  834
+108   qwen14b-awq     trailing_space             strict  0.778  0.791  0.013 -0.013  0.039  0.401  541
+109   qwen14b-awq     trailing_space              loose  0.799  0.806  0.007 -0.018  0.033  0.683  541
+110   qwen14b-awq     trailing_space     strict_no_case  0.790  0.794  0.004 -0.024  0.033  0.880  457
+111   qwen14b-awq   trailing_newline             strict  0.778  0.756 -0.022 -0.052  0.006  0.169  541
+112   qwen14b-awq   trailing_newline              loose  0.799  0.780 -0.018 -0.050  0.009  0.268  541
+113   qwen14b-awq   trailing_newline     strict_no_case  0.790  0.768 -0.022 -0.055  0.009  0.220  457
+114   qwen14b-awq  trailing_2newline             strict  0.778  0.762 -0.017 -0.046  0.013  0.321  541
+115   qwen14b-awq  trailing_2newline              loose  0.799  0.787 -0.011 -0.041  0.018  0.539  541
+116   qwen14b-awq  trailing_2newline     strict_no_case  0.790  0.779 -0.011 -0.039  0.020  0.576  457
+117   qwen14b-awq          uppercase             strict  0.778  0.741 -0.037 -0.072 -0.004  0.038  541
+118   qwen14b-awq          uppercase              loose  0.799  0.780 -0.018 -0.050  0.013  0.314  541
+119   qwen14b-awq          uppercase     strict_no_case  0.790  0.740 -0.050 -0.085 -0.015  0.010  457
+120   qwen14b-awq          lowercase             strict  0.778  0.758 -0.020 -0.055  0.013  0.284  541
+121   qwen14b-awq          lowercase              loose  0.799  0.780 -0.018 -0.052  0.017  0.337  541
+122   qwen14b-awq          lowercase     strict_no_case  0.790  0.759 -0.031 -0.068  0.007  0.135  457
+123   qwen14b-awq               base  inst_strict_level    NaN  0.838    NaN    NaN    NaN    NaN  834
+124   qwen14b-awq          uppercase  inst_strict_level    NaN  0.814    NaN    NaN    NaN    NaN  834
+125   qwen14b-awq          lowercase  inst_strict_level    NaN  0.824    NaN    NaN    NaN    NaN  834
+126    qwen3b-awq     trailing_space             strict  0.582  0.571 -0.011 -0.035  0.013  0.451  541
+127    qwen3b-awq     trailing_space              loose  0.627  0.610 -0.017 -0.039  0.007  0.211  541
+128    qwen3b-awq     trailing_space     strict_no_case  0.604  0.591 -0.013 -0.039  0.011  0.392  457
+129    qwen3b-awq   trailing_newline             strict  0.582  0.558 -0.024 -0.054  0.004  0.130  541
+130    qwen3b-awq   trailing_newline              loose  0.627  0.597 -0.030 -0.059  0.000  0.068  541
+131    qwen3b-awq   trailing_newline     strict_no_case  0.604  0.582 -0.022 -0.055  0.009  0.212  457
+132    qwen3b-awq  trailing_2newline             strict  0.582  0.582  0.000 -0.030  0.033  1.000  541
+133    qwen3b-awq  trailing_2newline              loose  0.627  0.621 -0.006 -0.037  0.026  0.818  541
+134    qwen3b-awq  trailing_2newline     strict_no_case  0.604  0.602 -0.002 -0.039  0.028  1.000  457
+135    qwen3b-awq          uppercase             strict  0.582  0.549 -0.033 -0.072  0.007  0.133  541
+136    qwen3b-awq          uppercase              loose  0.627  0.579 -0.048 -0.092 -0.009  0.028  541
+137    qwen3b-awq          uppercase     strict_no_case  0.604  0.558 -0.046 -0.088 -0.002  0.048  457
+138    qwen3b-awq          lowercase             strict  0.582  0.547 -0.035 -0.072  0.000  0.070  541
+139    qwen3b-awq          lowercase              loose  0.627  0.588 -0.039 -0.076 -0.004  0.044  541
+140    qwen3b-awq          lowercase     strict_no_case  0.604  0.560 -0.044 -0.083 -0.007  0.038  457
+141    qwen3b-awq               base  inst_strict_level    NaN  0.677    NaN    NaN    NaN    NaN  834
+142    qwen3b-awq          uppercase  inst_strict_level    NaN  0.662    NaN    NaN    NaN    NaN  834
+143    qwen3b-awq          lowercase  inst_strict_level    NaN  0.651    NaN    NaN    NaN    NaN  834
+144    qwen7b-awq     trailing_space             strict  0.717  0.708 -0.009 -0.033  0.015  0.542  541
+145    qwen7b-awq     trailing_space              loose  0.732  0.719 -0.013 -0.037  0.009  0.337  541
+146    qwen7b-awq     trailing_space     strict_no_case  0.737  0.737  0.000 -0.024  0.024  1.000  457
+147    qwen7b-awq   trailing_newline             strict  0.717  0.693 -0.024 -0.052  0.004  0.130  541
+148    qwen7b-awq   trailing_newline              loose  0.732  0.717 -0.015 -0.043  0.013  0.358  541
+149    qwen7b-awq   trailing_newline     strict_no_case  0.737  0.713 -0.024 -0.055  0.007  0.144  457
+150    qwen7b-awq  trailing_2newline             strict  0.717  0.704 -0.013 -0.043  0.017  0.470  541
+151    qwen7b-awq  trailing_2newline              loose  0.732  0.741  0.009 -0.020  0.041  0.625  541
+152    qwen7b-awq  trailing_2newline     strict_no_case  0.737  0.726 -0.011 -0.042  0.020  0.576  457
+153    qwen7b-awq          uppercase             strict  0.717  0.673 -0.044 -0.079 -0.009  0.020  541
+154    qwen7b-awq          uppercase              loose  0.732  0.699 -0.033 -0.068 -0.002  0.066  541
+155    qwen7b-awq          uppercase     strict_no_case  0.737  0.696 -0.042 -0.081 -0.004  0.042  457
+156    qwen7b-awq          lowercase             strict  0.717  0.689 -0.028 -0.063  0.006  0.128  541
+157    qwen7b-awq          lowercase              loose  0.732  0.715 -0.017 -0.048  0.017  0.368  541
+158    qwen7b-awq          lowercase     strict_no_case  0.737  0.705 -0.033 -0.068  0.004  0.091  457
+159    qwen7b-awq               base  inst_strict_level    NaN  0.791    NaN    NaN    NaN    NaN  834
+160    qwen7b-awq          uppercase  inst_strict_level    NaN  0.763    NaN    NaN    NaN    NaN  834
+161    qwen7b-awq          lowercase  inst_strict_level    NaN  0.777    NaN    NaN    NaN    NaN  834
+
+=== Exp4 effects ===
+            model   task                effect  delta  ci_lo  ci_hi      p
+0    gemma9b-awq  conll  json_input|plain_out -0.005 -0.025  0.013  0.096
+1    gemma9b-awq  conll   json_input|json_out  0.022 -0.003  0.050  0.186
+2    gemma9b-awq  conll  json_output|plain_in -0.006 -0.034  0.023  0.369
+3    gemma9b-awq  conll       json_input_main  0.008 -0.009  0.026  0.071
+4    gemma9b-awq  conll    full_json_vs_plain  0.016 -0.016  0.049  0.099
+5    gemma9b-awq  squad  json_input|plain_out  0.002 -0.013  0.017  0.936
+6    gemma9b-awq  squad   json_input|json_out  0.043  0.024  0.062  0.002
+7    gemma9b-awq  squad  json_output|plain_in -0.021 -0.038 -0.003  0.041
+8    gemma9b-awq  squad       json_input_main  0.023  0.011  0.035  0.006
+9    gemma9b-awq  squad    full_json_vs_plain  0.022  0.005  0.040  0.177
+10       llama1b  conll  json_input|plain_out -0.153 -0.185 -0.122  0.000
+11       llama1b  conll   json_input|json_out -0.117 -0.141 -0.091  0.000
+12       llama1b  conll  json_output|plain_in  0.001 -0.023  0.024  0.700
+13       llama1b  conll       json_input_main -0.135 -0.157 -0.114  0.000
+14       llama1b  conll    full_json_vs_plain -0.116 -0.145 -0.088  0.000
+15       llama1b  squad  json_input|plain_out -0.080 -0.117 -0.038  0.010
+16       llama1b  squad   json_input|json_out -0.035 -0.066 -0.000  0.025
+17       llama1b  squad  json_output|plain_in  0.075  0.039  0.112  0.002
+18       llama1b  squad       json_input_main -0.057 -0.085 -0.028  0.000
+19       llama1b  squad    full_json_vs_plain  0.041  0.002  0.081  0.036
+20   llama8b-awq  conll  json_input|plain_out -0.271 -0.315 -0.229  0.000
+21   llama8b-awq  conll   json_input|json_out -0.077 -0.105 -0.050  0.000
+22   llama8b-awq  conll  json_output|plain_in  0.123  0.083  0.164  0.000
+23   llama8b-awq  conll       json_input_main -0.174 -0.200 -0.149  0.000
+24   llama8b-awq  conll    full_json_vs_plain  0.046  0.007  0.085  0.922
+25   llama8b-awq  squad  json_input|plain_out  0.107  0.075  0.138  0.000
+26   llama8b-awq  squad   json_input|json_out  0.064  0.036  0.092  0.000
+27   llama8b-awq  squad  json_output|plain_in -0.059 -0.087 -0.032  0.002
+28   llama8b-awq  squad       json_input_main  0.085  0.063  0.108  0.000
+29   llama8b-awq  squad    full_json_vs_plain  0.005 -0.024  0.033  0.927
+30      qwen0.5b  conll  json_input|plain_out -0.052 -0.073 -0.032  0.000
+31      qwen0.5b  conll   json_input|json_out -0.059 -0.087 -0.030  0.010
+32      qwen0.5b  conll  json_output|plain_in -0.011 -0.041  0.020  0.128
+33      qwen0.5b  conll       json_input_main -0.055 -0.076 -0.036  0.000
+34      qwen0.5b  conll    full_json_vs_plain -0.069 -0.099 -0.040  0.000
+35      qwen0.5b  squad  json_input|plain_out -0.025 -0.055  0.004  0.175
+36      qwen0.5b  squad   json_input|json_out -0.063 -0.095 -0.032  0.002
+37      qwen0.5b  squad  json_output|plain_in  0.112  0.074  0.151  0.000
+38      qwen0.5b  squad       json_input_main -0.044 -0.068 -0.022  0.001
+39      qwen0.5b  squad    full_json_vs_plain  0.049  0.007  0.091  0.024
+40  qwen0.5b-awq  conll  json_input|plain_out -0.019 -0.036 -0.002  0.026
+41  qwen0.5b-awq  conll   json_input|json_out -0.028 -0.046 -0.011  0.006
+42  qwen0.5b-awq  conll  json_output|plain_in  0.044  0.024  0.063  0.005
+43  qwen0.5b-awq  conll       json_input_main -0.024 -0.035 -0.012  0.001
+44  qwen0.5b-awq  conll    full_json_vs_plain  0.015 -0.004  0.035  0.435
+45  qwen0.5b-awq  squad  json_input|plain_out -0.089 -0.128 -0.052  0.004
+46  qwen0.5b-awq  squad   json_input|json_out -0.180 -0.223 -0.137  0.000
+47  qwen0.5b-awq  squad  json_output|plain_in  0.101  0.059  0.141  0.000
+48  qwen0.5b-awq  squad       json_input_main -0.135 -0.164 -0.105  0.000
+49  qwen0.5b-awq  squad    full_json_vs_plain -0.080 -0.123 -0.039  0.001
+50      qwen1.5b  conll  json_input|plain_out  0.015 -0.012  0.044  0.083
+51      qwen1.5b  conll   json_input|json_out -0.056 -0.085 -0.026  0.013
+52      qwen1.5b  conll  json_output|plain_in  0.114  0.075  0.153  0.000
+53      qwen1.5b  conll       json_input_main -0.020 -0.041  0.001  0.403
+54      qwen1.5b  conll    full_json_vs_plain  0.058  0.018  0.099  0.016
+55      qwen1.5b  squad  json_input|plain_out -0.005 -0.027  0.015  0.459
+56      qwen1.5b  squad   json_input|json_out -0.028 -0.050 -0.005  0.104
+57      qwen1.5b  squad  json_output|plain_in  0.022 -0.002  0.044  0.151
+58      qwen1.5b  squad       json_input_main -0.016 -0.034  0.000  0.129
+59      qwen1.5b  squad    full_json_vs_plain -0.006 -0.031  0.020  0.981
+60  qwen1.5b-awq  conll  json_input|plain_out  0.018 -0.003  0.038  0.127
+61  qwen1.5b-awq  conll   json_input|json_out  0.006 -0.019  0.031  0.274
+62  qwen1.5b-awq  conll  json_output|plain_in -0.006 -0.036  0.025  0.061
+63  qwen1.5b-awq  conll       json_input_main  0.012 -0.003  0.028  0.068
+64  qwen1.5b-awq  conll    full_json_vs_plain  0.001 -0.031  0.032  0.106
+65  qwen1.5b-awq  squad  json_input|plain_out -0.000 -0.026  0.024  0.807
+66  qwen1.5b-awq  squad   json_input|json_out -0.034 -0.059 -0.012  0.034
+67  qwen1.5b-awq  squad  json_output|plain_in  0.005 -0.022  0.031  0.851
+68  qwen1.5b-awq  squad       json_input_main -0.017 -0.037  0.001  0.110
+69  qwen1.5b-awq  squad    full_json_vs_plain -0.030 -0.057 -0.000  0.070
+70   qwen14b-awq  conll  json_input|plain_out -0.080 -0.110 -0.053  0.000
+71   qwen14b-awq  conll   json_input|json_out -0.009 -0.034  0.015  0.585
+72   qwen14b-awq  conll  json_output|plain_in  0.064  0.028  0.103  0.037
+73   qwen14b-awq  conll       json_input_main -0.045 -0.065 -0.025  0.001
+74   qwen14b-awq  conll    full_json_vs_plain  0.055  0.017  0.093  0.155
+75   qwen14b-awq  squad  json_input|plain_out  0.001 -0.013  0.017  0.936
+76   qwen14b-awq  squad   json_input|json_out -0.011 -0.025  0.002  0.113
+77   qwen14b-awq  squad  json_output|plain_in  0.009 -0.007  0.025  0.995
+78   qwen14b-awq  squad       json_input_main -0.005 -0.016  0.006  0.259
+79   qwen14b-awq  squad    full_json_vs_plain -0.002 -0.019  0.014  0.158
+80    qwen3b-awq  conll  json_input|plain_out  0.050  0.026  0.077  0.055
+81    qwen3b-awq  conll   json_input|json_out  0.000 -0.028  0.027  0.442
+82    qwen3b-awq  conll  json_output|plain_in  0.257  0.221  0.294  0.000
+83    qwen3b-awq  conll       json_input_main  0.025  0.006  0.043  0.042
+84    qwen3b-awq  conll    full_json_vs_plain  0.257  0.221  0.295  0.000
+85    qwen3b-awq  squad  json_input|plain_out -0.008 -0.032  0.016  0.509
+86    qwen3b-awq  squad   json_input|json_out -0.032 -0.062  0.001  0.128
+87    qwen3b-awq  squad  json_output|plain_in -0.074 -0.104 -0.046  0.000
+88    qwen3b-awq  squad       json_input_main -0.020 -0.041  0.001  0.014
+89    qwen3b-awq  squad    full_json_vs_plain -0.106 -0.141 -0.071  0.000
+90    qwen7b-awq  conll  json_input|plain_out -0.031 -0.067  0.001  0.340
+91    qwen7b-awq  conll   json_input|json_out -0.037 -0.061 -0.013  0.002
+92    qwen7b-awq  conll  json_output|plain_in  0.248  0.204  0.293  0.000
+93    qwen7b-awq  conll       json_input_main -0.034 -0.056 -0.013  0.006
+94    qwen7b-awq  conll    full_json_vs_plain  0.211  0.166  0.260  0.000
+95    qwen7b-awq  squad  json_input|plain_out  0.029  0.008  0.050  0.008
+96    qwen7b-awq  squad   json_input|json_out  0.081  0.055  0.109  0.000
+97    qwen7b-awq  squad  json_output|plain_in -0.142 -0.171 -0.116  0.000
+98    qwen7b-awq  squad       json_input_main  0.055  0.037  0.074  0.000
+99    qwen7b-awq  squad    full_json_vs_plain -0.061 -0.086 -0.038  0.000
+
+=== Exp4 cells ===
+            model   task in_fmt out_fmt     f1  json_ok     em
+0    gemma9b-awq  conll   json    json  0.531    1.000    NaN
+1    gemma9b-awq  conll   json   plain  0.509      NaN    NaN
+2    gemma9b-awq  conll  plain    json  0.509    1.000    NaN
+3    gemma9b-awq  conll  plain   plain  0.514      NaN    NaN
+4    gemma9b-awq  squad   json    json  0.836    1.000  0.648
+5    gemma9b-awq  squad   json   plain  0.816      NaN  0.622
+6    gemma9b-awq  squad  plain    json  0.793    0.995  0.585
+7    gemma9b-awq  squad  plain   plain  0.814      NaN  0.618
+8        llama1b  conll   json    json  0.099    0.987    NaN
+9        llama1b  conll   json   plain  0.061      NaN    NaN
+10       llama1b  conll  plain    json  0.216    0.957    NaN
+11       llama1b  conll  plain   plain  0.215      NaN    NaN
+12       llama1b  squad   json    json  0.657    0.995  0.532
+13       llama1b  squad   json   plain  0.537      NaN  0.395
+14       llama1b  squad  plain    json  0.691    0.995  0.545
+15       llama1b  squad  plain   plain  0.616      NaN  0.510
+16   llama8b-awq  conll   json    json  0.450    1.000    NaN
+17   llama8b-awq  conll   json   plain  0.132      NaN    NaN
+18   llama8b-awq  conll  plain    json  0.526    0.997    NaN
+19   llama8b-awq  conll  plain   plain  0.403      NaN    NaN
+20   llama8b-awq  squad   json    json  0.652    0.992  0.400
+21   llama8b-awq  squad   json   plain  0.754      NaN  0.570
+22   llama8b-awq  squad  plain    json  0.588    0.980  0.315
+23   llama8b-awq  squad  plain   plain  0.648      NaN  0.405
+24      qwen0.5b  conll   json    json  0.102    0.997    NaN
+25      qwen0.5b  conll   json   plain  0.119      NaN    NaN
+26      qwen0.5b  conll  plain    json  0.161    0.960    NaN
+27      qwen0.5b  conll  plain   plain  0.171      NaN    NaN
+28      qwen0.5b  squad   json    json  0.646    0.990  0.488
+29      qwen0.5b  squad   json   plain  0.572      NaN  0.425
+30      qwen0.5b  squad  plain    json  0.709    0.990  0.568
+31      qwen0.5b  squad  plain   plain  0.597      NaN  0.458
+32  qwen0.5b-awq  conll   json    json  0.122    0.930    NaN
+33  qwen0.5b-awq  conll   json   plain  0.088      NaN    NaN
+34  qwen0.5b-awq  conll  plain    json  0.151    0.973    NaN
+35  qwen0.5b-awq  conll  plain   plain  0.107      NaN    NaN
+36  qwen0.5b-awq  squad   json    json  0.419    0.858  0.282
+37  qwen0.5b-awq  squad   json   plain  0.410      NaN  0.288
+38  qwen0.5b-awq  squad  plain    json  0.599    0.998  0.480
+39  qwen0.5b-awq  squad  plain   plain  0.499      NaN  0.385
+40      qwen1.5b  conll   json    json  0.325    1.000    NaN
+41      qwen1.5b  conll   json   plain  0.282      NaN    NaN
+42      qwen1.5b  conll  plain    json  0.380    1.000    NaN
+43      qwen1.5b  conll  plain   plain  0.266      NaN    NaN
+44      qwen1.5b  squad   json    json  0.818    1.000  0.695
+45      qwen1.5b  squad   json   plain  0.818      NaN  0.710
+46      qwen1.5b  squad  plain    json  0.845    1.000  0.722
+47      qwen1.5b  squad  plain   plain  0.824      NaN  0.712
+48  qwen1.5b-awq  conll   json    json  0.266    0.997    NaN
+49  qwen1.5b-awq  conll   json   plain  0.283      NaN    NaN
+50  qwen1.5b-awq  conll  plain    json  0.259    0.993    NaN
+51  qwen1.5b-awq  conll  plain   plain  0.265      NaN    NaN
+52  qwen1.5b-awq  squad   json    json  0.784    1.000  0.660
+53  qwen1.5b-awq  squad   json   plain  0.813      NaN  0.728
+54  qwen1.5b-awq  squad  plain    json  0.818    1.000  0.728
+55  qwen1.5b-awq  squad  plain   plain  0.814      NaN  0.722
+56   qwen14b-awq  conll   json    json  0.503    1.000    NaN
+57   qwen14b-awq  conll   json   plain  0.368      NaN    NaN
+58   qwen14b-awq  conll  plain    json  0.512    1.000    NaN
+59   qwen14b-awq  conll  plain   plain  0.448      NaN    NaN
+60   qwen14b-awq  squad   json    json  0.870    1.000  0.690
+61   qwen14b-awq  squad   json   plain  0.874      NaN  0.725
+62   qwen14b-awq  squad  plain    json  0.881    0.995  0.728
+63   qwen14b-awq  squad  plain   plain  0.872      NaN  0.718
+64    qwen3b-awq  conll   json    json  0.271    0.993    NaN
+65    qwen3b-awq  conll   json   plain  0.064      NaN    NaN
+66    qwen3b-awq  conll  plain    json  0.271    0.990    NaN
+67    qwen3b-awq  conll  plain   plain  0.014      NaN    NaN
+68    qwen3b-awq  squad   json    json  0.700    0.975  0.492
+69    qwen3b-awq  squad   json   plain  0.798      NaN  0.660
+70    qwen3b-awq  squad  plain    json  0.732    0.988  0.530
+71    qwen3b-awq  squad  plain   plain  0.806      NaN  0.668
+72    qwen7b-awq  conll   json    json  0.488    1.000    NaN
+73    qwen7b-awq  conll   json   plain  0.247      NaN    NaN
+74    qwen7b-awq  conll  plain    json  0.526    1.000    NaN
+75    qwen7b-awq  conll  plain   plain  0.278      NaN    NaN
+76    qwen7b-awq  squad   json    json  0.761    0.992  0.545
+77    qwen7b-awq  squad   json   plain  0.851      NaN  0.705
+78    qwen7b-awq  squad  plain    json  0.680    0.975  0.450
+79    qwen7b-awq  squad  plain   plain  0.822      NaN  0.638
+
+=== per-model ===
+           model       family  params weights  cls_spread  cls_abs_delta  cls_flip  cls_base_acc  json_input_delta  caps_delta  trail_len_abs_logratio  trail_len_ratio
+0   gemma9b-awq      Gemma-2    9.24     awq      0.0492         0.0084    0.0266        0.8095            0.0155         NaN                     NaN              NaN
+1       llama1b    Llama-3.x    1.24    bf16      0.1692         0.0379    0.1216        0.5202           -0.0960     -0.0444                     NaN              NaN
+2   llama8b-awq    Llama-3.x    8.03     awq      0.0462         0.0103    0.0487        0.7453           -0.0444     -0.0314                     NaN              NaN
+3      qwen0.5b      Qwen2.5    0.49    bf16      0.1402         0.0290    0.1453        0.6307           -0.0496     -0.0573                  0.0566           0.9450
+5      qwen1.5b      Qwen2.5    1.54    bf16      0.0683         0.0129    0.0628        0.7307           -0.0183     -0.0388                  0.0358           1.0219
+4  qwen0.5b-awq  Qwen2.5-AWQ    0.49     awq      0.2128         0.0531    0.1974        0.6270           -0.0792     -0.0665                  0.0211           0.9793
+6  qwen1.5b-awq  Qwen2.5-AWQ    1.54     awq      0.0543         0.0112    0.0722        0.7047           -0.0025     -0.0370                  0.0265           0.9740
+8    qwen3b-awq  Qwen2.5-AWQ    3.09     awq      0.0613         0.0111    0.0527        0.7345            0.0023     -0.0333                  0.0178           0.9952
+9    qwen7b-awq  Qwen2.5-AWQ    7.62     awq      0.0390         0.0097    0.0371        0.7728            0.0106     -0.0444                  0.0089           1.0063
+7   qwen14b-awq  Qwen2.5-AWQ   14.70     awq      0.0392         0.0112    0.0375        0.7670           -0.0247     -0.0370                  0.0119           0.9882
+
+=== scale fits ===
+              subset                  metric   n  slope_per_decade  slope_se      r2       p  spearman_rho  spearman_p
+0   qwen_awq_ladder              cls_spread   5           -0.1058    0.0415  0.6841  0.0840       -0.8000      0.1041
+1   qwen_awq_ladder           cls_abs_delta   5           -0.0252    0.0120  0.5951  0.1266       -0.7000      0.1881
+2   qwen_awq_ladder                cls_flip   5           -0.1021    0.0324  0.7679  0.0513       -0.9000      0.0374
+3   qwen_awq_ladder  trail_len_abs_logratio   5           -0.0095    0.0044  0.6110  0.1184       -0.8000      0.1041
+4   qwen_awq_ladder              caps_delta   5            0.0153    0.0101  0.4351  0.2258        0.5000      0.3910
+5   qwen_awq_ladder        json_input_delta   5            0.0379    0.0287  0.3672  0.2787        0.4000      0.5046
+6          qwen_all              cls_spread   7           -0.0941    0.0301  0.6607  0.0262       -0.8911      0.0071
+7          qwen_all           cls_abs_delta   7           -0.0207    0.0089  0.5178  0.0683       -0.8729      0.0103
+8          qwen_all                cls_flip   7           -0.0935    0.0251  0.7351  0.0136       -0.9456      0.0013
+9          qwen_all  trail_len_abs_logratio   7           -0.0214    0.0089  0.5369  0.0610       -0.8001      0.0307
+10         qwen_all              caps_delta   7            0.0151    0.0072  0.4694  0.0894        0.6910      0.0856
+11         qwen_all        json_input_delta   7            0.0373    0.0191  0.4336  0.1078        0.6183      0.1389
+12              all              cls_spread  10           -0.0949    0.0239  0.6632  0.0041       -0.8720      0.0010
+13              all           cls_abs_delta  10           -0.0216    0.0066  0.5697  0.0116       -0.8415      0.0023
+14              all                cls_flip  10           -0.0923    0.0175  0.7775  0.0007       -0.9329      0.0001
+15              all  trail_len_abs_logratio   7           -0.0214    0.0089  0.5369  0.0610       -0.8001      0.0307
+16              all              caps_delta   9            0.0158    0.0057  0.5206  0.0282        0.7933      0.0107
+17              all        json_input_delta  10            0.0407    0.0205  0.3293  0.0828        0.6037      0.0646
+
+=== noise floor (replicates / placebo) ===
+            model       kind                exp        n  identical_text   acc_a   acc_b  pred_agree  max_abs_cell_diff  mean_abs_cell_diff  variant_delta_corr  len_ratio_b_over_a  strict_a  strict_b  base_len_ratio  base_strict_diff    f1_a    f1_b
+0   qwen1.5b-awq  replicate                cls  18000.0          0.9967  0.6943  0.6944      0.9985              0.004               0.001              0.9962                 NaN       NaN       NaN             NaN               NaN     NaN     NaN
+1   qwen1.5b-awq  replicate               ifev   3246.0          0.7625     NaN     NaN         NaN                NaN                 NaN                 NaN              1.0003    0.3503    0.3503          0.9847           -0.0074     NaN     NaN
+2   qwen1.5b-awq  replicate                ext   2800.0          0.9868     NaN     NaN         NaN                NaN                 NaN                 NaN                 NaN       NaN       NaN             NaN               NaN  0.5764  0.5767
+3    gemma9b-awq    placebo     trailing_space      NaN             NaN     NaN     NaN         NaN              0.000                 NaN                 NaN                 NaN       NaN       NaN             NaN               NaN     NaN     NaN
+4    gemma9b-awq    placebo   trailing_newline      NaN             NaN     NaN     NaN         NaN              0.000                 NaN                 NaN                 NaN       NaN       NaN             NaN               NaN     NaN     NaN
+5    gemma9b-awq    placebo  trailing_2newline      NaN             NaN     NaN     NaN         NaN                NaN                 NaN                 NaN                 NaN       NaN       NaN             NaN               NaN     NaN     NaN
+6        llama1b    placebo     trailing_space      NaN          0.3068     NaN     NaN         NaN              0.004                 NaN                 NaN                 NaN       NaN       NaN          0.9908            0.0277     NaN     NaN
+7        llama1b    placebo   trailing_newline      NaN          0.2311     NaN     NaN         NaN              0.004                 NaN                 NaN                 NaN       NaN       NaN          0.9918            0.0148     NaN     NaN
+8        llama1b    placebo  trailing_2newline      NaN          0.2440     NaN     NaN         NaN                NaN                 NaN                 NaN                 NaN       NaN       NaN          0.9822            0.0222     NaN     NaN
+9    llama8b-awq    placebo     trailing_space      NaN          0.7486     NaN     NaN         NaN              0.002                 NaN                 NaN                 NaN       NaN       NaN          1.0040           -0.0111     NaN     NaN
+10   llama8b-awq    placebo   trailing_newline      NaN          0.7523     NaN     NaN         NaN              0.004                 NaN                 NaN                 NaN       NaN       NaN          1.0037           -0.0055     NaN     NaN
+11   llama8b-awq    placebo  trailing_2newline      NaN          0.7616     NaN     NaN         NaN                NaN                 NaN                 NaN                 NaN       NaN       NaN          0.9943           -0.0074     NaN     NaN
+
+=== cross-model correlation of variant effects ===
+             subset             a             b     r
+0     all_variants   gemma9b-awq       llama1b  0.22
+1     all_variants   gemma9b-awq   llama8b-awq  0.74
+2     all_variants   gemma9b-awq      qwen0.5b  0.06
+3     all_variants   gemma9b-awq  qwen0.5b-awq  0.24
+4     all_variants   gemma9b-awq      qwen1.5b -0.65
+5     all_variants   gemma9b-awq  qwen1.5b-awq -0.01
+6     all_variants   gemma9b-awq   qwen14b-awq  0.14
+7     all_variants   gemma9b-awq    qwen3b-awq -0.12
+8     all_variants   gemma9b-awq    qwen7b-awq -0.45
+9     all_variants       llama1b   llama8b-awq  0.18
+10    all_variants       llama1b      qwen0.5b -0.16
+11    all_variants       llama1b  qwen0.5b-awq -0.09
+12    all_variants       llama1b      qwen1.5b -0.24
+13    all_variants       llama1b  qwen1.5b-awq -0.03
+14    all_variants       llama1b   qwen14b-awq  0.31
+15    all_variants       llama1b    qwen3b-awq -0.25
+16    all_variants       llama1b    qwen7b-awq -0.34
+17    all_variants   llama8b-awq      qwen0.5b -0.24
+18    all_variants   llama8b-awq  qwen0.5b-awq  0.05
+19    all_variants   llama8b-awq      qwen1.5b -0.70
+20    all_variants   llama8b-awq  qwen1.5b-awq -0.26
+21    all_variants   llama8b-awq   qwen14b-awq  0.05
+22    all_variants   llama8b-awq    qwen3b-awq -0.10
+23    all_variants   llama8b-awq    qwen7b-awq -0.60
+24    all_variants      qwen0.5b  qwen0.5b-awq  0.62
+25    all_variants      qwen0.5b      qwen1.5b  0.42
+26    all_variants      qwen0.5b  qwen1.5b-awq  0.53
+27    all_variants      qwen0.5b   qwen14b-awq  0.17
+28    all_variants      qwen0.5b    qwen3b-awq  0.53
+29    all_variants      qwen0.5b    qwen7b-awq  0.47
+30    all_variants  qwen0.5b-awq      qwen1.5b  0.22
+31    all_variants  qwen0.5b-awq  qwen1.5b-awq  0.35
+32    all_variants  qwen0.5b-awq   qwen14b-awq  0.06
+33    all_variants  qwen0.5b-awq    qwen3b-awq  0.28
+34    all_variants  qwen0.5b-awq    qwen7b-awq  0.06
+35    all_variants      qwen1.5b  qwen1.5b-awq  0.59
+36    all_variants      qwen1.5b   qwen14b-awq  0.13
+37    all_variants      qwen1.5b    qwen3b-awq  0.43
+38    all_variants      qwen1.5b    qwen7b-awq  0.71
+39    all_variants  qwen1.5b-awq   qwen14b-awq  0.30
+40    all_variants  qwen1.5b-awq    qwen3b-awq  0.48
+41    all_variants  qwen1.5b-awq    qwen7b-awq  0.52
+42    all_variants   qwen14b-awq    qwen3b-awq -0.20
+43    all_variants   qwen14b-awq    qwen7b-awq  0.25
+44    all_variants    qwen3b-awq    qwen7b-awq  0.33
+45  excl_uppercase   gemma9b-awq       llama1b  0.23
+46  excl_uppercase   gemma9b-awq   llama8b-awq  0.77
+47  excl_uppercase   gemma9b-awq      qwen0.5b  0.05
+48  excl_uppercase   gemma9b-awq  qwen0.5b-awq  0.41
+49  excl_uppercase   gemma9b-awq      qwen1.5b -0.90
+50  excl_uppercase   gemma9b-awq  qwen1.5b-awq -0.07
+51  excl_uppercase   gemma9b-awq   qwen14b-awq  0.17
+52  excl_uppercase   gemma9b-awq    qwen3b-awq -0.32
+53  excl_uppercase   gemma9b-awq    qwen7b-awq -0.65
+54  excl_uppercase       llama1b   llama8b-awq  0.13
+55  excl_uppercase       llama1b      qwen0.5b  0.00
+56  excl_uppercase       llama1b  qwen0.5b-awq  0.15
+57  excl_uppercase       llama1b      qwen1.5b -0.07
+58  excl_uppercase       llama1b  qwen1.5b-awq  0.23
+59  excl_uppercase       llama1b   qwen14b-awq  0.39
+60  excl_uppercase       llama1b    qwen3b-awq -0.19
+61  excl_uppercase       llama1b    qwen7b-awq -0.30
+62  excl_uppercase   llama8b-awq      qwen0.5b -0.22
+63  excl_uppercase   llama8b-awq  qwen0.5b-awq  0.18
+64  excl_uppercase   llama8b-awq      qwen1.5b -0.77
+65  excl_uppercase   llama8b-awq  qwen1.5b-awq -0.15
+66  excl_uppercase   llama8b-awq   qwen14b-awq  0.22
+67  excl_uppercase   llama8b-awq    qwen3b-awq -0.12
+68  excl_uppercase   llama8b-awq    qwen7b-awq -0.63
+69  excl_uppercase      qwen0.5b  qwen0.5b-awq  0.28
+70  excl_uppercase      qwen0.5b      qwen1.5b -0.06
+71  excl_uppercase      qwen0.5b  qwen1.5b-awq  0.16
+72  excl_uppercase      qwen0.5b   qwen14b-awq  0.15
+73  excl_uppercase      qwen0.5b    qwen3b-awq -0.08
+74  excl_uppercase      qwen0.5b    qwen7b-awq  0.25
+75  excl_uppercase  qwen0.5b-awq      qwen1.5b -0.24
+76  excl_uppercase  qwen0.5b-awq  qwen1.5b-awq  0.18
+77  excl_uppercase  qwen0.5b-awq   qwen14b-awq  0.18
+78  excl_uppercase  qwen0.5b-awq    qwen3b-awq -0.51
+79  excl_uppercase  qwen0.5b-awq    qwen7b-awq -0.23
+80  excl_uppercase      qwen1.5b  qwen1.5b-awq  0.19
+81  excl_uppercase      qwen1.5b   qwen14b-awq -0.15
+82  excl_uppercase      qwen1.5b    qwen3b-awq  0.22
+83  excl_uppercase      qwen1.5b    qwen7b-awq  0.54
+84  excl_uppercase  qwen1.5b-awq   qwen14b-awq -0.10
+85  excl_uppercase  qwen1.5b-awq    qwen3b-awq  0.45
+86  excl_uppercase  qwen1.5b-awq    qwen7b-awq -0.00
+87  excl_uppercase   qwen14b-awq    qwen3b-awq -0.21
+88  excl_uppercase   qwen14b-awq    qwen7b-awq -0.07
+89  excl_uppercase    qwen3b-awq    qwen7b-awq  0.23

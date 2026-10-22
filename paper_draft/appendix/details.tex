@@ -1,0 +1,82 @@
+\section{Prompt Examples}
+\label{app:prompts}
+
+All prompts are sent as a single user turn in each model's default chat template. Below are the \agnews classification template under \edit{base} and \capsedit, and the \conll extraction prompt under the four input/output format cells. Line breaks are shown as in the prompt.
+
+\begin{lstlisting}[caption={\agnews, \edit{base}.}]
+Classify the topic of the following news article. The possible topics are world, sports, business, and technology.
+
+Article: {input}
+
+Answer with one word from the list of topics.
+Topic:
+\end{lstlisting}
+
+\begin{lstlisting}[caption={\agnews, \capsedit (the inserted article is unchanged).}]
+CLASSIFY THE TOPIC OF THE FOLLOWING NEWS ARTICLE. THE POSSIBLE TOPICS ARE WORLD, SPORTS, BUSINESS, AND TECHNOLOGY.
+
+ARTICLE: {input}
+
+ANSWER WITH ONE WORD FROM THE LIST OF TOPICS.
+TOPIC:
+\end{lstlisting}
+
+\begin{lstlisting}[caption={\conll, plain input with plain output (JSON output replaces the last line).}]
+Extract all named entities from the sentence. Entity types: PER (person), ORG (organization), LOC (location), MISC (other names such as nationalities, events, or products).
+
+Sentence: {input}
+
+List each entity on its own line in the format TYPE: entity text. If there are no entities, write NONE.
+[JSON output:] Respond with only a JSON object of the form {"PER": [...], "ORG": [...], "LOC": [...], "MISC": [...]} listing the entity texts of each type (use empty lists when there are none).
+\end{lstlisting}
+
+\begin{lstlisting}[caption={\conll, JSON input with plain output.}]
+{
+  "task": "Extract all named entities from the sentence. Entity types: PER (person), ORG (organization), LOC (location), MISC (other names such as nationalities, events, or products).",
+  "sentence": "{input}",
+  "output_format": "List each entity on its own line in the format TYPE: entity text. If there are no entities, write NONE."
+}
+\end{lstlisting}
+
+\section{Full Extraction Results}
+\label{app:extraction}
+
+\begin{table}[h]
+    \centering
+    \small
+    \caption{Extraction F1 ($\times$100) in each input/output format cell. p/p = plain input, plain output; json-in = JSON input, plain output; json-out = plain input, JSON output; json/json = JSON input and output. Best cell per model and task in \textbf{bold}.}
+    \label{tab:ext_full}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}lcccccccc@{}}
+        \toprule
+        & \multicolumn{4}{c}{\squad} & \multicolumn{4}{c}{\conll} \\
+        \cmidrule(lr){2-5} \cmidrule(lr){6-9}
+        \textbf{Model} & p/p & json-in & json-out & json/json & p/p & json-in & json-out & json/json \\
+        \midrule
+        qwen0.5b      & 59.7 & 57.2 & \textbf{70.9} & 64.6 & \textbf{17.1} & 11.9 & 16.1 & 10.2 \\
+        qwen0.5b-awq  & 49.9 & 41.0 & \textbf{59.9} & 41.9 & 10.7 & 8.8 & \textbf{15.1} & 12.2 \\
+        llama1b       & 61.6 & 53.7 & \textbf{69.1} & 65.7 & 21.5 & 6.1 & \textbf{21.6} & 9.9 \\
+        qwen1.5b      & 82.4 & 81.8 & \textbf{84.5} & 81.8 & 26.6 & 28.2 & \textbf{38.0} & 32.5 \\
+        qwen1.5b-awq  & 81.4 & 81.3 & \textbf{81.8} & 78.4 & 26.5 & \textbf{28.3} & 25.9 & 26.6 \\
+        qwen3b-awq    & \textbf{80.6} & 79.8 & 73.2 & 70.0 & 1.4 & 6.4 & \textbf{27.1} & \textbf{27.1} \\
+        qwen7b-awq    & 82.2 & \textbf{85.1} & 68.0 & 76.1 & 27.8 & 24.7 & \textbf{52.6} & 48.8 \\
+        llama8b-awq   & 64.8 & \textbf{75.4} & 58.8 & 65.2 & 40.3 & 13.2 & \textbf{52.6} & 45.0 \\
+        gemma9b-awq   & 81.4 & 81.6 & 79.3 & \textbf{83.6} & 51.4 & 50.9 & 50.9 & \textbf{53.1} \\
+        qwen14b-awq   & 87.2 & 87.4 & \textbf{88.1} & 87.0 & 44.8 & 36.8 & \textbf{51.2} & 50.3 \\
+        \bottomrule
+    \end{tabular}
+    }
+\end{table}
+
+\section{Reproducibility Details}
+\label{app:repro}
+
+\para{Software.} Python 3.12.12, \vllm 0.32.0, PyTorch 2.13.0 (CUDA 13.0), transformers 5.19.0, pandas 3.0.6, scipy 1.18.1, statsmodels 0.15.0.
+
+\para{Inference.} Maximum context length is 2{,}048--2{,}560 tokens (the longest prompt plus generation is 1{,}605 tokens). We use eager execution and enable prefix caching. llama8b-awq runs with tensor parallelism 2. The Llama-3.2-1B checkpoint is an ungated mirror of the official weights (\texttt{unsloth/Llama-3.2-1B-Instruct}).
+
+\para{Seeds.} Dataset sampling uses seed 42, \vllm uses seed 42, and bootstrap and permutation tests use a NumPy generator seeded with 42. Greedy decoding is still subject to batch-dependent numerics (\tabref{tab:noise}).
+
+\para{Compute.} There was no API spend. Each model took about 4--50 minutes of GPU time for its 24{,}046 prompts, on 4--12\,GB slices of shared 48\,GB A6000 GPUs. Because other jobs held 40--45\,GB per card, we reserve GPU memory as soon as it becomes free and hand it to \vllm just before it measures free memory. Without this step, about 90\% of launches failed to obtain memory.
+
+\para{Artifacts.} We save all raw generations, scored outputs, exact prompts (24{,}046 records per model), and one chat-templated rendering per model, so every number in this paper can be audited.

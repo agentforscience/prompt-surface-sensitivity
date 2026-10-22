@@ -1,0 +1,2 @@
+qwen1.5b-awq-rep Qwen/Qwen2.5-1.5B-Instruct-AWQ 4.0 --max-model-len 2048
+qwen7b-awq-rep Qwen/Qwen2.5-7B-Instruct-AWQ 8.5|2x4.4 --max-model-len 2048

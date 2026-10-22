@@ -1,0 +1,4 @@
+15:03:13 LAUNCH qwen1.5b-awq-rep gpu1 need=1x4.0 free_before=4.6
+15:15:24 DONE qwen1.5b-awq-rep gpu1
+15:15:29 LAUNCH qwen7b-awq-rep gpu2,1 need=2x4.4 free_before=6.0
+15:16:05 FAIL qwen7b-awq-rep gpu2,1 rc=1 (fail 1)

@@ -1,0 +1,32 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\para{What is robust?} Three findings hold across our models. First, models of 1.2B parameters or fewer are highly format-sensitive: single edits produce spreads of 7--28 points and flip 12--20\% of predictions. For these models, the choice of format is as large a source of variance as many reported differences between models or methods. Second, ALL-CAPS is the most harmful common formatting choice. It hurts classification in small \qwen models and lowers \ifeval compliance in every model we measured, from 0.5B to 14.7B. Third, trailing whitespace is nearly harmless in chat-formatted prompts: it does not change verbosity and rarely changes predictions (1.6\% flips).
+
+\para{Where did the hypotheses go wrong?} The hypotheses overestimated the effects of trailing whitespace (H2) and JSON prompts (H4), and underestimated the ALL-CAPS penalty for large models (H3). They also assumed a clean log-linear trend (H5), whereas we observe a steep drop followed by a plateau. One reason for the gap is that much folk knowledge about prompt formatting comes from raw completion prompting. Chat templates change which edits can matter. Whitespace before an end-of-turn token has little effect, and some templates delete it entirely.
+
+\para{Mechanisms behind large effects.} Our error analysis points to a few recurring mechanisms rather than a general ``confusion'':
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item {\bf Label-vocabulary drift.} Under some formats, models answer with off-list labels (``politics'', ``sport'', ``news''). This drives the large \agnews spreads even at 7--9B.
+    \item {\bf Degenerate abstention.} qwen3b-awq answers ``NONE'' for 97\% of \conll sentences with plain-list output, but extracts entities when asked for JSON.
+    \item {\bf Over-structuring.} With JSON output on \squad, \qwen-3B and \qwen-7B return longer, paraphrased spans, which lowers F1.
+    \item {\bf JSON input disrupting NER.} The \llama models lose 13--17 F1 on \conll when the sentence is a JSON string value.
+\end{itemize}
+
+\para{Practical recommendations.} For models of about 3B parameters or fewer, evaluate over several formats and report the spread, in line with multi-prompt evaluation~\cite{mizrahi2024state}. Because edit effects are idiosyncratic and even change under quantization, a format tuned for one checkpoint should not be assumed to transfer to another. At any size, avoid ALL-CAPS templates. Do not assume that JSON helps extraction: wrapping the input in JSON is rarely beneficial, and the output format should be chosen and validated per task. Finally, when measuring effects on long generations, measure the noise floor of the inference stack itself. For \ifeval, differences of about 3 points can arise from batch-dependent numerics alone.
+
+\para{Alternative explanations.} We considered four. (i) \emph{Parser artifacts}: a single lenient parser is shared across conditions, and parse rates are reported (87--100\%). Two parser gaps were found by inspecting failures and fixed before final scoring for all conditions alike: the ``sport'' synonym, and string-valued or list-of-objects JSON. (ii) \emph{Item noise}: addressed with paired tests and permutation nulls. (iii) \emph{Inference nondeterminism}: measured directly (\tabref{tab:noise}). (iv) \emph{Ceiling effects}: base accuracy rises with scale, which partly confounds the scale trend.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item {\bf Scale range and completeness.} The largest model has 14.7B parameters and is 4-bit quantized. \gemma-9B lacks \ifeval results, so the $\geq$7B part of H3 rests on three models (qwen7b-awq, llama8b-awq, qwen14b-awq).
+    \item {\bf Model coverage.} We study three open-weight families (seven \qwen runs, two \llama, one \gemma) and no API models. Hosted APIs may normalize whitespace on the server side.
+    \item {\bf Quantization.} All models of 3B or more are AWQ 4-bit. Our bf16 controls show that quantization changes which edits matter, so results for 16-bit large models may differ in detail.
+    \item {\bf One base template, single edits.} Effects are measured relative to one base template per task. A different anchor could change the deltas, and we do not study interactions between edits.
+    \item {\bf Sample size and multiplicity.} With $n=300$--$500$, CIs on classification deltas are about $\pm$4 points. \ifeval effects near 3 points sit at the inference noise floor. Holm correction is applied within each classification model$\times$task. \ifeval and extraction $p$-values are uncorrected and should be read together with the CIs.
+    \item {\bf Contamination.} All benchmarks are public and are probably in the training data. This affects absolute accuracy more than the within-item format contrasts we study.
+\end{itemize}
+
+\para{Broader impact.} This work aims to make LLM evaluation and deployment more reliable by showing where formatting choices can silently change results. We see no direct potential for misuse. One indirect risk is that format sensitivity could be used to cherry-pick formats that favor a particular model. Reporting results over several formats, as we recommend, guards against this.

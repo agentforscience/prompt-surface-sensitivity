@@ -1,0 +1,86 @@
+12:52:46 LAUNCH smoke gpu3 need=2.4 free_before=6.0
+12:53:36 FAIL smoke gpu3 rc=1 (fail 1)
+--- restart 12:53:53
+12:53:53 LAUNCH smoke gpu3 need=4.0 free_before=6.0
+12:54:14 FAIL smoke gpu3 rc=1 (fail 1)
+12:54:34 LAUNCH qwen1.5b-awq gpu0 need=4.4 free_before=5.0
+12:55:10 LAUNCH qwen0.5b-awq gpu1 need=4.0 free_before=4.6
+13:06:25 DONE qwen1.5b-awq gpu0
+13:06:26 LAUNCH qwen0.5b gpu0 need=4.0 free_before=5.0
+13:06:46 FAIL qwen0.5b gpu0 rc=1 (fail 1)
+13:09:18 DONE qwen0.5b-awq gpu1
+13:09:18 LAUNCH smoke gpu1 need=4.0 free_before=5.0
+13:09:38 FAIL smoke gpu1 rc=1 (fail 2)
+13:12:05 LAUNCH qwen0.5b gpu1 need=4.0 free_before=5.0
+13:12:26 FAIL qwen0.5b gpu1 rc=1 (fail 2)
+13:12:46 LAUNCH qwen3b-awq gpu3 need=5.0 free_before=6.0
+13:13:06 FAIL qwen3b-awq gpu3 rc=1 (fail 1)
+--- restart 13:13:23
+--- restart (TP alternatives) 13:13:55
+13:15:46 LAUNCH qwen0.5b gpu1 need=1x4.0 free_before=5.0
+13:16:07 FAIL qwen0.5b gpu1 rc=1 (fail 0, startup race)
+13:18:45 LAUNCH qwen0.5b gpu0 need=1x4.0 free_before=5.0
+13:19:05 FAIL qwen0.5b gpu0 rc=1 (fail 0, startup race)
+13:20:11 LAUNCH qwen0.5b gpu1 need=1x4.0 free_before=5.0
+13:21:22 LAUNCH qwen3b-awq gpu3 need=1x5.0 free_before=6.0
+13:29:39 DONE qwen0.5b gpu1
+13:36:51 DONE qwen3b-awq gpu3
+13:36:51 LAUNCH qwen1.5b gpu3 need=1x5.4 free_before=6.0
+13:37:11 FAIL qwen1.5b gpu3 rc=1 (fail 0, startup race)
+13:46:18 LAUNCH llama1b gpu3 need=1x5.0 free_before=6.0
+13:46:39 FAIL llama1b gpu3 rc=1 (fail 0, startup race)
+--- restart (smaller budgets) 13:51:05
+13:54:27 LAUNCH qwen1.5b gpu1 need=1x4.3 free_before=5.0
+13:54:48 FAIL qwen1.5b gpu1 rc=1 (fail 0, startup race)
+13:57:15 LAUNCH qwen14b-awq gpu2 need=1x12.0 free_before=28.5
+13:58:21 FAIL qwen14b-awq gpu2 rc=1 (fail 1)
+13:58:21 LAUNCH qwen7b-awq gpu2 need=1x8.5 free_before=10.5
+14:03:31 LAUNCH llama8b-awq gpu2 need=1x9.0 free_before=13.5
+14:03:56 FAIL llama8b-awq gpu2 rc=1 (fail 1)
+14:04:32 LAUNCH llama1b gpu2 need=1x4.2 free_before=6.9
+14:04:52 FAIL llama1b gpu2 rc=1 (fail 0, startup race)
+14:16:08 LAUNCH qwen1.5b gpu1 need=1x4.3 free_before=5.0
+14:16:28 FAIL qwen1.5b gpu1 rc=1 (fail 0, startup race)
+14:28:50 LAUNCH gemma9b-awq gpu2 need=1x10.5 free_before=13.5
+14:29:21 FAIL gemma9b-awq gpu2 rc=1 (fail 0, startup race)
+14:29:51 LAUNCH llama1b gpu2 need=1x4.2 free_before=9.0
+14:30:11 FAIL llama1b gpu2 rc=1 (fail 0, startup race)
+14:36:42 LAUNCH qwen1.5b gpu2 need=1x4.3 free_before=8.6
+14:36:47 DONE qwen7b-awq gpu2
+14:37:13 FAIL qwen1.5b gpu2 rc=1 (fail 0, startup race)
+14:37:43 LAUNCH llama1b gpu2 need=1x4.2 free_before=4.8
+14:38:04 FAIL llama1b gpu2 rc=1 (fail 0, startup race)
+14:38:19 LAUNCH qwen1.5b gpu0 need=1x4.3 free_before=5.0
+14:38:39 FAIL qwen1.5b gpu0 rc=1 (fail 0, startup race)
+--- restart (holder) 14:47:50
+14:48:36 LAUNCH qwen1.5b gpu1 need=1x4.3 free_before=5.0
+14:49:06 FAIL qwen1.5b gpu1 rc=1 (fail 0, startup race)
+14:52:09 LAUNCH llama1b gpu0 need=1x4.2 free_before=4.7
+14:54:16 LAUNCH qwen1.5b gpu1 need=1x4.3 free_before=5.0
+14:59:31 DONE llama1b gpu0
+15:03:15 DONE qwen1.5b gpu1
+15:15:31 LAUNCH llama8b-awq gpu2,1 need=2x4.6 free_before=6.0
+15:16:06 FAIL llama8b-awq gpu2,1 rc=1 (fail 1)
+15:59:32 LAUNCH llama8b-awq gpu2,1 need=2x4.6 free_before=5.4
+15:59:57 FAIL llama8b-awq gpu2,1 rc=1 (fail 2)
+16:04:01 LAUNCH llama8b-awq gpu2,1 need=2x4.6 free_before=6.1
+16:07:19 FAIL llama8b-awq gpu2,1 rc=3 (fail 2, startup race)
+16:07:19 LAUNCH llama8b-awq gpu2,1 need=2x4.6 free_before=6.1
+16:10:37 FAIL llama8b-awq gpu2,1 rc=3 (fail 2, startup race)
+16:10:37 LAUNCH llama8b-awq gpu2,1 need=2x4.6 free_before=6.1
+16:11:07 FAIL llama8b-awq gpu2,1 rc=1 (fail 2, startup race)
+16:11:53 LAUNCH llama8b-awq gpu2,1 need=2x4.6 free_before=6.1
+16:29:46 LAUNCH qwen14b-awq gpu2 need=1x12.0 free_before=21.8
+16:31:07 FAIL qwen14b-awq gpu2 rc=1 (fail 1)
+16:31:07 LAUNCH gemma9b-awq gpu2 need=1x10.5 free_before=21.8
+16:32:03 FAIL gemma9b-awq gpu2 rc=1 (fail 0, startup race)
+16:32:19 LAUNCH qwen14b-awq gpu2 need=1x12.0 free_before=15.5
+16:40:27 LAUNCH gemma9b-awq gpu2 need=1x10.5 free_before=10.9
+16:43:44 FAIL gemma9b-awq gpu2 rc=3 (fail 0, startup race)
+16:44:20 LAUNCH gemma9b-awq gpu2 need=1x10.5 free_before=10.9
+16:46:34 FAIL gemma9b-awq gpu2 rc=1 (fail 0, startup race)
+16:46:34 LAUNCH gemma9b-awq gpu2 need=1x10.5 free_before=17.0
+17:03:58 DONE llama8b-awq gpu2,1
+18:14:22 DONE qwen14b-awq gpu2
+19:00:37 DONE gemma9b-awq gpu2
+19:00:42 ALL FINISHED

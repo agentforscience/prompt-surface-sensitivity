@@ -1,0 +1,10 @@
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Classify the sentiment of the following movie review as positive or negative.
+
+Review: it confirms fincher 's status as a film maker who artfully bends technical know-how to the service of psychological insight .
+
+Answer with one word, either positive or negative.
+Sentiment:<|im_end|>
+<|im_start|>assistant
